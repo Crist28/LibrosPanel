@@ -73,11 +73,11 @@ export class LoginComponent {
     if(loginForm.valid){
       this.adminService.login_admin(data).subscribe(
         response => {
-          this.usuario = response.usuario;
+          this.usuario = response.administrador;
           
           localStorage.setItem('token', response.token);
-          localStorage.setItem('id', response.usuario._id);
-          localStorage.setItem('nombre', response.usuario.nombres);
+          localStorage.setItem('id', this.usuario._id);
+          localStorage.setItem('nombre', this.usuario.name);
 
           this.router.navigate(['']);
           

@@ -49,7 +49,7 @@ export class AdminService {
         return false;
       }
   
-      if (decodedToken.rol !== 'admin') {
+      if (decodedToken.adminRol !== 'admin') {
         iziToast.error({
           title: 'Error',
           message: 'El usuario no es tipo administrador',
