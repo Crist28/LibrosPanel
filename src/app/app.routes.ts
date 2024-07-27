@@ -1,110 +1,68 @@
 import { Routes } from '@angular/router';
 import { adminGuard } from './guards/admin.guard';
-// import { DefaultLayoutComponent } from './layout';
-
-import { DefaultLayoutComponent } from './layout';
+import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'dashboard',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: '/1',
-  //   component: DefaultLayoutComponent,
-  //   data: {
-  //     title: 'Home'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'dashboard',
-  //       loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'theme',
-  //       loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'base',
-  //       loadChildren: () => import('./views/base/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'buttons',
-  //       loadChildren: () => import('./views/buttons/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'forms',
-  //       loadChildren: () => import('./views/forms/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'icons',
-  //       loadChildren: () => import('./views/icons/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'notifications',
-  //       loadChildren: () => import('./views/notifications/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'widgets',
-  //       loadChildren: () => import('./views/widgets/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'charts',
-  //       loadChildren: () => import('./views/charts/routes').then((m) => m.routes)
-  //     },
-  //     {
-  //       path: 'pages',
-  //       loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '404',
-  //   loadComponent: () => import('./views/pages/page404/page404.component').then(m => m.Page404Component),
-  //   data: {
-  //     title: 'Page 404'
-  //   }
-  // },
-  // {
-  //   path: '500',
-  //   loadComponent: () => import('./views/pages/page500/page500.component').then(m => m.Page500Component),
-  //   data: {
-  //     title: 'Page 500'
-  //   }
-  // },
-  // {
-  //   path: 'login',
-  //   loadComponent: () => import('./views/pages/login/login.component').then(m => m.LoginComponent),
-  //   data: {
-  //     title: 'Login Page'
-  //   }
-  // },
-  // {
-  //   path: 'register',
-  //   loadComponent: () => import('./views/pages/register/register.component').then(m => m.RegisterComponent),
-  //   data: {
-  //     title: 'Register Page'
-  //   }
-  // },
-
+  {
+    path: '',
+    redirectTo: 'inicio',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Home'
+    },
+    children: [
+      {
+        path: 'inicio',
+        loadComponent: () =>
+          import('./pages/inicio/inicio.component').then(m => m.InicioComponent),
+        canActivate: [adminGuard],
+        data: {
+          title: 'Inicio'
+        }
+      },
+      {
+        path: 'panel/clientes',
+        loadComponent: () =>
+          import('./pages/clientes/cliente-index/cliente-index.component').then(m => m.ClienteIndexComponent),
+        canActivate: [adminGuard],
+        data: {
+          title: 'Clientes'
+        }
+      },
+      {
+        path: 'panel/clientes/registro',
+        loadComponent: () =>
+          import('./pages/clientes/cliente-create/cliente-create.component').then(m => m.ClienteCreateComponent),
+        canActivate: [adminGuard],
+        data: {
+          title: 'Registro de Clientes'
+        }
+      },
+      {
+        path: 'panel/clientes/:id',
+        loadComponent: () =>
+          import('./pages/clientes/cliente-edit/cliente-edit.component').then(m => m.ClienteEditComponent),
+        canActivate: [adminGuard],
+        data: {
+          title: 'Editar Cliente'
+        }
+      }
+    ]
+  },
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
+    loadComponent: () =>
+      import('./pages/login/login.component').then(m => m.LoginComponent),
     data: {
-      title: 'Register Page'
+      title: 'Login Page'
     }
   },
-
   {
-    path: 'inicio',
-    loadComponent: () => import('./pages/inicio/inicio.component').then(m => m.InicioComponent),canActivate: [adminGuard],
-    data: {
-      title: 'Register Page'
-    }
-  },
-
-  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-
-  // { path: '**', redirectTo: 'dashboard' },
+    path: '**',
+    redirectTo: 'inicio'
+  }
 ];

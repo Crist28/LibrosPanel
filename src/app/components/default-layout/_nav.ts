@@ -21,19 +21,14 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Ver Clientes',
-        url: '/base/accordion',
+        url: '/panel/clientes',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Crear Cliente',
         url: '/base/breadcrumbs',
         icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Editar Clientes',
-        url: '/base/cards',
-        icon: 'nav-icon-bullet'
-      },
+      }
     ]
   },
   {
@@ -49,11 +44,6 @@ export const navItems: INavData[] = [
       {
         name: 'Crear Libros',
         url: '/buttons/button-groups',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Editar Libros',
-        url: '/buttons/dropdowns',
         icon: 'nav-icon-bullet'
       }
     ]
