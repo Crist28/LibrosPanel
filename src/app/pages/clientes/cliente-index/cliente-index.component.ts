@@ -1,7 +1,35 @@
 import { Component } from '@angular/core';
 import { DocsExampleComponent } from '@docs-components/public-api';
-import { RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, TableDirective, TableColorDirective, TableActiveDirective, BorderDirective, AlignDirective } from '@coreui/angular';
-import { IconModule, IconSetService } from '@coreui/icons-angular';
+import {
+  FormCheckComponent,
+  RowComponent,
+  ColComponent,
+  TextColorDirective,
+  CardComponent,
+  CardHeaderComponent,
+  CardBodyComponent,
+  TableDirective,
+  TableColorDirective,
+  TableActiveDirective,
+  BorderDirective,
+  AlignDirective,
+} from '@coreui/angular';
+import {
+  FormControlDirective,
+  FormDirective,
+  FormLabelDirective,
+  FormSelectDirective,
+  FormCheckInputDirective,
+  FormCheckLabelDirective,
+  ButtonDirective,
+  ColDirective,
+  InputGroupComponent,
+  InputGroupTextDirective,
+} from '@coreui/angular';
+
+import { RouterLink } from '@angular/router';
+import { PaginationComponent, PageItemComponent, PageLinkDirective } from '@coreui/angular';
+
 
 @Component({
   selector: 'app-cliente-index',
@@ -19,10 +47,21 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
     TableActiveDirective,
     BorderDirective,
     AlignDirective,
-    IconModule,
-  ],
-  providers: [
-    IconSetService
+    FormCheckComponent,
+    FormControlDirective,
+    FormDirective,
+    FormLabelDirective,
+    FormSelectDirective,
+    FormCheckInputDirective,
+    FormCheckLabelDirective,
+    ButtonDirective,
+    ColDirective,
+    InputGroupComponent,
+    InputGroupTextDirective,
+    RouterLink,
+    PaginationComponent,
+    PageItemComponent,
+    PageLinkDirective
   ],
   templateUrl: './cliente-index.component.html',
   styleUrl: './cliente-index.component.scss',

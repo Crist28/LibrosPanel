@@ -17,7 +17,7 @@ export const navItems: INavData[] = [
   {
     name: 'Clientes',
     url: '/base',
-    iconComponent: { name: 'cil-puzzle' },
+    iconComponent: { name: 'cil-user' },
     children: [
       {
         name: 'Ver Clientes',
@@ -26,7 +26,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Crear Cliente',
-        url: '/base/breadcrumbs',
+        url: '/panel/clientes/registro',
         icon: 'nav-icon-bullet'
       }
     ]
