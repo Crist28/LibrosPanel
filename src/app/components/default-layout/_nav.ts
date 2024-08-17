@@ -43,7 +43,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Crear Libros',
-        url: '/buttons/button-groups',
+        url: 'createbook',
         icon: 'nav-icon-bullet'
       }
     ]

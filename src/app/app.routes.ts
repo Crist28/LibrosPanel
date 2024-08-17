@@ -50,7 +50,15 @@ export const routes: Routes = [
         data: {
           title: 'Editar Cliente'
         }
-      }
+      },
+      {
+        path: 'createbook',
+        loadComponent: () =>
+          import('./pages/books/crear-libro/crear-libro.component').then(m => m.CrearLibroComponent),
+        data: {
+          title: 'Createbook Page'
+        }
+      },
     ]
   },
   {
@@ -61,6 +69,7 @@ export const routes: Routes = [
       title: 'Login Page'
     }
   },
+  
   {
     path: '**',
     redirectTo: 'inicio'

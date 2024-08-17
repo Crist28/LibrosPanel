@@ -47,8 +47,8 @@ declare let iziToast: any;
 export class LoginComponent {
   public user: any = {};
   public usuario: any = {};
-  token: string;
-  passwordFieldType: string = 'password';
+  public token: string;
+  public passwordFieldType: string = 'password';
 
   constructor(private adminService: AdminService, private router: Router) {
     const token = this.adminService.getToken();
