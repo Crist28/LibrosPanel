@@ -45,7 +45,13 @@ export const navItems: INavData[] = [
         name: 'Crear Libros',
         url: 'createbook',
         icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Actualizar libro',
+        url: 'actualizarbook',
+        icon: 'nav-icon-bullet'
       }
+     
     ]
   },
   {

@@ -55,9 +55,20 @@ export const routes: Routes = [
         path: 'createbook',
         loadComponent: () =>
           import('./pages/books/crear-libro/crear-libro.component').then(m => m.CrearLibroComponent),
+        canActivate: [adminGuard],
         data: {
           title: 'Createbook Page'
         }
+      },
+      {
+        path: 'actualizarbook',
+        loadComponent: () =>
+          import('./pages/books/book-actualizar/book-actualizar.component').then(m => m.BookActualizarComponent ),
+        canActivate: [adminGuard],
+        data: {
+          title: 'Actualizar Page'
+        }
+
       },
     ]
   },

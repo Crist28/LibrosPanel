@@ -36,10 +36,10 @@ declare let iziToast: any;
     ListGroupItemDirective,
     RouterLink,
   ],
-  templateUrl: './crear-libro.component.html',
-  styleUrl: './crear-libro.component.scss',
+  templateUrl: './book-actualizar.component.html',
+  styleUrl: './book-actualizar.component.scss',
 })
-export class CrearLibroComponent {
+export class BookActualizarComponent {
 
   public registerForm: FormGroup;
   public token: string;
@@ -139,3 +139,6 @@ onFileChange(event: any) {
   }
 
 }
+
+
+ 
