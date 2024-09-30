@@ -1,0 +1,135 @@
+<c-row>
+  <c-col xs="12" class="mb-5">
+    <h1 style="text-align: center" class="mb-3">Libros.</h1>
+    <span style="display: block; text-align: center"
+      >Este módulo lista todos los libros de la librería.</span
+    >
+  </c-col>
+  <form cForm class="row g-3 mb-4">
+    <h4>Filtrar por:</h4>
+    <c-col [md]="4">
+      <label cLabel for="inputEmail4">Titulo:</label>
+      <input
+        cFormControl
+        id="inputEmail4"
+        type="text"
+        (keyup)="filtrar('titulo')"
+        name="filtro_titulo"
+        [(ngModel)]="filtro_titulo"
+      />
+    </c-col>
+    <c-col [md]="4">
+      <label cLabel for="inputPassword4">Categoria:</label>
+      <input
+        cFormControl
+        id="inputPassword4"
+        type="text"
+        (keyup)="filtrar('categoria')"
+        name="filtro_categoria"
+        [(ngModel)]="filtro_categoria"
+      />
+    </c-col>
+  </form>
+  <c-col xs="12">
+    <table [striped]="true" cTable>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">N° ventas</th>
+          <th scope="col">Actualizar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody
+      *ngFor="let libro of libros_arr | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize; let indice = index"
+      >
+        <tr>
+          <th scope="row">{{ indice + 1 }}</th>
+          <td>{{ libro.titulo }}</td>
+          <td>{{ libro.stock }}</td>
+          <td>{{ libro.precio }}</td>
+          <td>{{ libro.categoria }}</td>
+          <td>{{ libro.nventas }}</td>
+          <td>
+            <a [routerLink]="['/actualizarbook', libro._id]" style="cursor: pointer">
+              <img
+                width="35"
+                src="https://img.icons8.com/bubbles/50/edit.png"
+                alt="edit"
+              />
+            </a>
+          </td>
+          <td>
+            <a href="" style="cursor: pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="30"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#9fa8da"
+                  d="M12,13v25c0,2.2,1.8,4,4,4h16c2.2,0,4-1.8,4-4V13H12z"
+                ></path>
+                <path
+                  fill="#7986cb"
+                  d="M23,15h2v23h-2V15z M29,15h2v23h-2V15z M17,15h2v23h-2V15z"
+                ></path>
+                <path fill="#5c6bc0" d="M12,10h24v4H12V10z"></path>
+                <path
+                  fill="#5c6bc0"
+                  d="M10,13h28v4H10V13z M20,12V8h8v4h2V8c0-1.1-0.9-2-2-2h-8c-1.1,0-2,0.9-2,2v4H20z"
+                ></path>
+              </svg>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </c-col>
+  <c-col xs="12" class="mt-5">
+    <c-pagination aria-label="Page navigation example">
+      <li cPageItem [class.disabled]="page === 1">
+        <span
+          style="cursor: pointer;"
+          cPageLink
+          (click)="cambiarPagina(page - 1)"
+          [class.disabled]="page === 1"
+          >Previous</span
+        >
+      </li>
+      <li
+        cPageItem
+        *ngFor="
+          let p of [].constructor(Math.ceil(totalLibros / pageSize));
+          let i = index
+        "
+      >
+        <a
+          style="cursor: pointer;"
+          cPageLink
+          (click)="cambiarPagina(i + 1)"
+          [class.active]="page === i + 1"
+          >{{ i + 1 }}</a
+        >
+      </li>
+      <li
+        cPageItem
+        [class.disabled]="page === Math.ceil(totalLibros / pageSize)"
+      >
+        <a
+          style="cursor: pointer;"
+          cPageLink
+          (click)="cambiarPagina(page + 1)"
+          [class.disabled]="page === Math.ceil(totalLibros / pageSize)"
+          >Next</a
+        >
+      </li>
+    </c-pagination>
+  </c-col>
+</c-row>

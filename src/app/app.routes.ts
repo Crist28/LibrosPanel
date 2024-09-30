@@ -52,6 +52,15 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'indexbook',
+        loadComponent: () =>
+          import('./pages/books/book-index/book-index.component').then(m => m.BookIndexComponent),
+        canActivate: [adminGuard],
+        data: {
+          title: 'Listado de libros'
+        }
+      },
+      {
         path: 'createbook',
         loadComponent: () =>
           import('./pages/books/crear-libro/crear-libro.component').then(m => m.CrearLibroComponent),
@@ -61,7 +70,7 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'actualizarbook',
+        path: 'actualizarbook/:id',
         loadComponent: () =>
           import('./pages/books/book-actualizar/book-actualizar.component').then(m => m.BookActualizarComponent ),
         canActivate: [adminGuard],

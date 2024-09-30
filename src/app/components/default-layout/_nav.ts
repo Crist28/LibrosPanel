@@ -38,17 +38,12 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Ver Libros',
-        url: '/buttons/buttons',
+        url: 'indexbook',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Crear Libros',
         url: 'createbook',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Actualizar libro',
-        url: 'actualizarbook',
         icon: 'nav-icon-bullet'
       }
      

@@ -91,4 +91,17 @@ export class AdminService {
     });
 
   }
+  // getBooks(id: any, token: any):Observable<any>{
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization':token
+  //   });
+  //   return this.http.get(this.url + 'getBooks/'+id,{headers:headers});
+  // }
+  cargarLibros(tipo: string, filtro: string, token: any): Observable<any> {
+    let headers = new HttpHeaders({
+      authorization: token,
+    });
+    return this.http.get(`${this.urlbook}api/books/admin/${tipo}/${filtro}`, {headers: headers});
+  }
 }
