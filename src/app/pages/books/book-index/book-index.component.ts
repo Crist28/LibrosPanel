@@ -90,6 +90,10 @@ export class BookIndexComponent {
   }
 
   ngOnInit(): void {
+    this.cargarLibros();
+  }
+
+  cargarLibros(): void {
     this.libroService.cargarLibros('titulo', '', this.token).subscribe(
       (response) => {
         this.libros_arr = response.data; // Ahora `response.data` es reconocido
@@ -111,7 +115,11 @@ export class BookIndexComponent {
       }
     );
   }
+
   filtrar(tipo: string): void {
+
+    this.page = 1;
+
     const filtroValor = tipo === 'titulo' ? this.filtro_titulo : this.filtro_categoria;
     this.libroService.cargarLibros(tipo, filtroValor, this.token).subscribe(
       (response) => {
@@ -126,5 +134,6 @@ export class BookIndexComponent {
    // Método para cambiar de página
    cambiarPagina(pagina: number): void {
     this.page = pagina;
+    this.cargarLibros();
   }
 }
