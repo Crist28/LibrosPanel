@@ -30,6 +30,9 @@ import {
 
 import { FormsModule } from '@angular/forms';
 
+import Swal from 'sweetalert2';
+declare let iziToast: any;
+
 import { RouterLink } from '@angular/router';
 import { PaginationComponent, PageItemComponent, PageLinkDirective } from '@coreui/angular';
 import { AdminService } from '../../../services/admin.service';
@@ -136,4 +139,59 @@ export class BookIndexComponent {
     this.page = pagina;
     this.cargarLibros();
   }
+
+  eliminarProducto(id: string) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    });
+  
+    swalWithBootstrapButtons.fire({
+      title: '¿Quieres eliminar el libro?',
+      text: "Esta acción no se puede deshacer.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminarlo!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.libroService.deleteBookAdmin(id, this.token).subscribe(
+          response => {
+            // Mostrar mensaje de éxito
+            iziToast.success({
+              title: 'OK',
+              message: 'Libro borrado correctamente!',
+          });
+            swalWithBootstrapButtons.fire(
+              '¡Eliminado!',
+              'El Libro ha sido eliminado.',
+              'success'
+            );
+            // Actualizar la lista de productos después de eliminar, si corresponde
+            // location.reload();
+            this.cargarLibros();
+          },
+          error => {
+            // Manejar errores en caso de que ocurra alguno durante la eliminación
+            // Mostrar mensaje de error
+            swalWithBootstrapButtons.fire(
+              'Error',
+              'Hubo un problema al eliminar el libro.',
+              'error'
+            );
+          }
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'El libro no ha sido eliminado.',
+          'info'
+        );
+      }
+    });
+  }  
 }

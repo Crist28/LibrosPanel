@@ -104,4 +104,11 @@ export class AdminService {
     });
     return this.http.get(`${this.urlbook}api/books/admin/${tipo}/${filtro}`, {headers: headers});
   }
+  deleteBookAdmin(id: any, token: any):Observable<any>{
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization':token
+    });
+    return this.http.delete(this.urlbook + 'delete/'+id,{headers:headers});
+  }
 }
