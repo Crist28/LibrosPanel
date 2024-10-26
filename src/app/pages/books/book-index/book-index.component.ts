@@ -37,6 +37,7 @@ import { RouterLink } from '@angular/router';
 import { PaginationComponent, PageItemComponent, PageLinkDirective } from '@coreui/angular';
 import { AdminService } from '../../../services/admin.service';
 import { Libro } from '../../../interfaces/book.interfaces';
+import { BookCreate } from '../../../environments/global.component';
 
 @Component({
   selector: 'app-book-index',
@@ -82,6 +83,7 @@ export class BookIndexComponent {
   public filtro_categoria: string = '';
   public libros_arr: Libro[] = [];
   public token: string;
+  public url;
   page = 1;
   pageSize= 10;
   totalLibros = 0;
@@ -90,10 +92,12 @@ export class BookIndexComponent {
   constructor(private libroService: AdminService) {
     const token = this.libroService.getToken();
     this.token = token !== null ? token : '';
+    this.url = BookCreate.urlbook;
   }
 
   ngOnInit(): void {
     this.cargarLibros();
+    
   }
 
   cargarLibros(): void {
@@ -101,7 +105,7 @@ export class BookIndexComponent {
       (response) => {
         this.libros_arr = response.data; // Ahora `response.data` es reconocido
         this.totalLibros = this.libros_arr.length;
-        this.libros_arr.forEach((element) => {
+        this.libros_arr.reverse().forEach((element) => {
           this.libros.push({
             _id:  element._id,
             titulo: element.titulo,
@@ -109,6 +113,7 @@ export class BookIndexComponent {
             stock: element.stock,
             categoria: element.categoria,
             nventas: element.nventas,
+            portada: element.portada,
             createdAt: element.createdAt,
           });
         });

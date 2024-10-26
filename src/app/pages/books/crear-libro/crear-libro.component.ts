@@ -116,8 +116,12 @@ onFileChange(event: any) {
     console.log(formData)
     this.adminService.CreateBook(formData,this.file,this.token).subscribe(
       (response) =>{
-        console.log(response)
-        this.router.navigate(['']);
+        iziToast.success({
+          title: 'Ok',
+          message: 'Se registró correctamente el nuevo libro',
+          position: 'topRight',
+        });
+        this.router.navigate(['indexbook']);
       },
       (error) =>{
         console.log(error)

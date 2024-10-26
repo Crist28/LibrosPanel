@@ -35,6 +35,7 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Portada</th>
           <th scope="col">Titulo</th>
           <th scope="col">Stock</th>
           <th scope="col">Precio</th>
@@ -50,7 +51,12 @@
   <tr>
     <!-- Ajusta la numeración sumando los elementos anteriores -->
     <th scope="row">{{ (page - 1) * pageSize + indice + 1 }}</th>
-    <td>{{ libro.titulo }}</td>
+    <td>
+      <img [src]="url + 'api/books/' + libro.portada" style="width: 50px" alt="">
+    </td>
+    <td>
+      {{ libro.titulo }}
+    </td>
     <td>{{ libro.stock }}</td>
     <td>{{ libro.precio }}</td>
     <td>{{ libro.categoria }}</td>

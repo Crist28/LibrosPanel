@@ -5,6 +5,7 @@ export interface Libro {
     stock: number;
     categoria: string;
     nventas: number;
+    portada: string;
     createdAt: string;
 }
 
