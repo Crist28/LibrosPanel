@@ -161,7 +161,14 @@ export class BookIndexComponent {
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminarlo!',
       cancelButtonText: 'No, cancelar!',
-      reverseButtons: true
+      reverseButtons: true,
+      didOpen: () => {
+        const actionsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+        if (actionsContainer) {
+          actionsContainer.style.display = 'flex';
+          actionsContainer.style.gap = '10px'; // Ajusta el valor de gap según sea necesario
+        }
+      }
     }).then((result) => {
       if (result.isConfirmed) {
         this.libroService.deleteBookAdmin(id, this.token).subscribe(
