@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { BookCreate, Global } from '../environments/global.component';
+import { BookCreate, Global, User } from '../environments/global.component';
 
 declare let iziToast: any;
 
@@ -13,9 +13,11 @@ declare let iziToast: any;
 export class AdminService {
   public url;
   public urlbook;
+  public urluser;
   constructor(private http: HttpClient) {
     this.url = Global.url;
     this.urlbook = BookCreate.urlbook;
+    this.urluser = User.urluser;
   }
   login_admin(data: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -110,5 +112,15 @@ export class AdminService {
       'Authorization':token
     });
     return this.http.delete(this.urlbook + 'delete/'+id,{headers:headers});
+  }
+
+  registro_cliente(data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization':token
+    });
+    return this.http.post(this.urluser + 'admin_create_user', data, {
+      headers: headers,
+    });
   }
 }
