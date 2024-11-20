@@ -82,6 +82,9 @@ export class AdminService {
     formData.append('stock', data.stock);
     formData.append('descripcion', data.descripcion);
     formData.append('categoria', data.categoria);
+    formData.append('autor', data.autor);
+    formData.append('isbn', data.isbn);
+    formData.append('anio_publicacion', data.anio_publicacion);
     formData.append('portada', file);
     const slug = data.titulo.toLowerCase().replace(/ /g, '-');
     formData.append('slug', slug);

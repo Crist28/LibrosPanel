@@ -19,6 +19,45 @@
   </c-col>
 
   <c-col class="position-relative" md="4">
+    <label cLabel for="validationTooltip01">Autor</label>
+    <input
+      cFormControl
+      formControlName="autor"
+      id="validationTooltip01"
+      required
+      type="text"
+      name="autor"
+    />
+    <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
+  </c-col>
+
+  <c-col class="position-relative" md="4">
+    <label cLabel for="validationTooltip01">Año de publicación</label>
+    <input
+      cFormControl
+      formControlName="anio_publicacion"
+      id="validationTooltip01"
+      required
+      type="number"
+      name="anio_publicacion"
+    />
+    <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
+  </c-col>
+
+  <c-col class="position-relative" md="4">
+    <label cLabel for="validationTooltip01">Número Estándar Internacional de Libros</label>
+    <input
+      cFormControl
+      formControlName="isbn"
+      id="validationTooltip01"
+      required
+      type="text"
+      name="isbn"
+    />
+    <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
+  </c-col>
+
+  <c-col class="position-relative" md="4">
     <label cLabel for="validationTooltip05">categoria</label>
     <input
       cFormControl

@@ -59,6 +59,9 @@ constructor (private adminService: AdminService,private router: Router){
     stock:new  FormControl ('',),
     descripcion: new  FormControl ('',),
     categoria:new  FormControl ('',),
+    autor:new  FormControl ('',),
+    isbn:new  FormControl ('',),
+    anio_publicacion:new  FormControl ('',),
   });
   
  
