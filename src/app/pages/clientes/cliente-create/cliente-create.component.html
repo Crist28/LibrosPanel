@@ -1,35 +1,55 @@
 <form #tooltipForm="ngForm" cForm class="row g-3 needs-validation" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <c-col class="position-relative" md="6">
         <label cLabel for="validationTooltip01">Correo Electrónico</label>
-        <input cFormControl id="validationTooltip01" required type="text" name="email"  formControlName="email" />
+        <input cFormControl id="validationTooltip01" required type="text" name="email" formControlName="email" />
     </c-col>
     <c-col class="position-relative" md="6">
-        <label cLabel for="validationTooltip01">Contraseña</label>
-        <input cFormControl id="validationTooltip01" required type="text" name="password"  formControlName="password" />
-    </c-col>
+        <label cLabel for="validationTooltipPassword">Contraseña</label>
+        <input
+          cFormControl
+          id="validationTooltipPassword"
+          required
+          type="{{ passwordFieldType }}"
+          name="password"
+          formControlName="password"
+        />
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="togglePassword"
+            (change)="togglePasswordVisibility($event)"
+          />
+          <label class="form-check-label" for="togglePassword">
+            Mostrar contraseña
+          </label>
+        </div>
+      </c-col>
+      
     <c-col class="position-relative" md="6">
         <label cLabel for="validationTooltip01">Nombre</label>
-        <input cFormControl id="validationTooltip01" required type="text" name="name"  formControlName="name" />
+        <input cFormControl id="validationTooltip01" required type="text" name="name" formControlName="name" />
     </c-col>
     <c-col class="position-relative" md="6">
         <label cLabel for="validationTooltip01">Apellido</label>
-        <input cFormControl id="validationTooltip01" required type="text" name="lastname"  formControlName="lastname" />
+        <input cFormControl id="validationTooltip01" required type="text" name="lastname" formControlName="lastname" />
     </c-col>
     <c-col class="position-relative" md="6">
         <label cLabel for="validationTooltip01">País</label>
-        <input cFormControl id="validationTooltip01" required type="text" name="country"  formControlName="country" />
+        <input cFormControl id="validationTooltip01" required type="text" name="country" formControlName="country" />
     </c-col>
     <c-col class="position-relative" md="6">
         <label cLabel for="validationTooltip01">Dirección</label>
-        <input cFormControl id="validationTooltip01" required type="text" name="direction"  formControlName="direction" />
+        <input cFormControl id="validationTooltip01" required type="text" name="direction"
+            formControlName="direction" />
     </c-col>
     <c-col class="position-relative" md="6">
         <label cLabel for="validationTooltip01">Perfil</label>
-        <input cFormControl id="validationTooltip01" required type="text" name="profile"  formControlName="profile" />
+        <input cFormControl id="validationTooltip01" required type="text" name="profile" formControlName="profile" />
     </c-col>
     <c-col xs="12">
         <button cButton class="me-1" color="primary" type="submit">
-          Submit form
-        </button>        
-      </c-col>
+            Submit form
+        </button>
+    </c-col>
 </form>

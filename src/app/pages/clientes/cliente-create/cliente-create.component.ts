@@ -46,6 +46,7 @@ declare let iziToast: any;
 export class ClienteCreateComponent {
   public registerForm: FormGroup;
   public token: string;
+  public passwordFieldType: string = 'password';
   constructor(private adminService: AdminService, private router: Router) {
     const token = this.adminService.getToken();
     this.token = token !== null ? token : '';
@@ -59,8 +60,8 @@ export class ClienteCreateComponent {
       country: new FormControl(''),
       profile: new FormControl(''),
     });
-    this.onSubmit()
   }
+  
   
   onSubmit() {
     const formData = this.registerForm.value;
@@ -70,4 +71,9 @@ export class ClienteCreateComponent {
       }  
     )
   }
+  togglePasswordVisibility(event: any) {
+    this.passwordFieldType = event.target.checked ? 'text' : 'password';
+  }
+  
+  
 }
