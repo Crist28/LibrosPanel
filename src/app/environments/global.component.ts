@@ -5,3 +5,7 @@ export const Global = {
 export const BookCreate = {
     urlbook:'http://localhost:3000/book/'
 }
+
+export const User = {
+    urluser:'http://localhost:3000/'
+}
