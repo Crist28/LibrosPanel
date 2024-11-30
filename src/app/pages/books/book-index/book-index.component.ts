@@ -113,6 +113,9 @@ export class BookIndexComponent {
             stock: element.stock,
             categoria: element.categoria,
             nventas: element.nventas,
+            autor: element.autor,
+            isbn: element.isbn,
+            anio_publicacion: element.anio_publicacion,
             portada: element.portada,
             createdAt: element.createdAt,
           });

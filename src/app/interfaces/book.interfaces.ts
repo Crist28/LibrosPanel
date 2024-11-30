@@ -6,6 +6,9 @@ export interface Libro {
     categoria: string;
     nventas: number;
     portada: string;
+    autor: string;
+    isbn: string;
+    anio_publicacion: number;
     createdAt: string;
 }
 
