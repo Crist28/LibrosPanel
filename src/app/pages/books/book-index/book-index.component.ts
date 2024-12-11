@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DocsExampleComponent } from '@docs-components/public-api';
 import { CommonModule } from '@angular/common';
 import {
   FormCheckComponent,
@@ -49,7 +48,6 @@ import { BookCreate } from '../../../environments/global.component';
     CardComponent,
     CardHeaderComponent,
     CardBodyComponent,
-    DocsExampleComponent,
     TableDirective,
     TableColorDirective,
     TableActiveDirective,
