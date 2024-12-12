@@ -1,0 +1,48 @@
+<c-row>
+  <form>
+    <c-col class="position-relative" md="4">
+      <div class="mb-3">
+        <label cLabel for="formFile">Seleccionar imagen</label>
+        <c-card>
+          <input
+            aria-label="file example"
+            cFormControl
+            formControlName="portada"
+            id="validationText1"
+            required
+            type="file"
+            (change)="onFileChange($event)"
+          />
+          <img [src]="imgSelect" alt="" />
+        </c-card>
+      </div>
+    </c-col>
+    <c-col class="position-relative" md="4">
+      <button cButton class="me-1" color="primary" (click)="subir_imagenes()">
+        Subir imagen
+      </button>
+    </c-col>
+  </form>
+  <c-col xs="12">
+    <table [striped]="true" cTable>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Imagenes</th>
+          <th scope="col">Identificador</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of libro.galeria; let indice = index">
+            <th>{{ indice + 1 }}</th>
+            <td>
+              <img [src]="url+'obtener_galeria/'+item.name" style="width: 80px;">
+            </td>
+            <td>{{ item.name }}</td>
+            <td>Eliminar</td>
+        </tr>
+      </tbody>
+    </table>
+  </c-col>
+</c-row>
