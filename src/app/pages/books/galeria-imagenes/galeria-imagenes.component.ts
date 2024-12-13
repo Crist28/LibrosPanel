@@ -63,6 +63,7 @@ export class GaleriaImagenesComponent {
   public id: any;
   public libro: any;
   public url;
+  public tooltipValidated = false;
 
   constructor(private adminService: AdminService, private route: ActivatedRoute,){
     const token = this.adminService.getToken();
@@ -130,12 +131,56 @@ export class GaleriaImagenesComponent {
     }
   }
 
+  onReset3() {
+    this.tooltipValidated = false;
+    console.log('Reset... 3');
+  }
+
   onFileChange(event: any) {
     if (event.target.files && event.target.files.length > 0) {
-      this.files = Array.from(event.target.files);
+      this.files = Array.from(event.target.files); // Mantén el arreglo de archivos
+      const file = this.files[0]; // Toma el primer archivo para validación
+  
+      if (file.size <= 4000000) {
+        if (
+          file.type === 'image/png' ||
+          file.type === 'image/webp' ||
+          file.type === 'image/jpg' ||
+          file.type === 'image/jpeg' ||
+          file.type === 'image/gif'
+        ) {
+          const reader = new FileReader();
+          reader.onload = (e) => (this.imgSelect = reader.result);
+          reader.readAsDataURL(file);
+          console.log(file);
+        } else {
+          iziToast.error({
+            title: 'Error',
+            message: 'El archivo debe ser una imagen válida.',
+            position: 'topRight',
+          });
+          this.imgSelect = 'assets/carpeta.jpg';
+          this.files = []; // Restablece el arreglo si hay un error
+        }
+      } else {
+        iziToast.error({
+          title: 'Error',
+          message: 'La imagen no puede superar los 4MB.',
+          position: 'topRight',
+        });
+        this.imgSelect = 'assets/carpeta.jpg';
+        this.files = []; // Restablece el arreglo si hay un error
+      }
     } else {
       this.files = [];
+      iziToast.error({
+        title: 'Error',
+        message: 'No hay una imagen seleccionada.',
+        position: 'topRight',
+      });
+      this.imgSelect = 'assets/carpeta.jpg';
     }
-  }  
+    console.log(this.files);
+  }   
 
 }

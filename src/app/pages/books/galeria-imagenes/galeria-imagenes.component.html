@@ -1,8 +1,8 @@
 <c-row>
-  <form>
+  <form class="d-flex flex-column align-items-center">
     <c-col class="position-relative" md="4">
       <div class="mb-3">
-        <label cLabel for="formFile">Seleccionar imagen</label>
+        <!-- <label cLabel for="formFile">Seleccionar imagen</label> -->
         <c-card>
           <input
             aria-label="file example"
@@ -17,8 +17,8 @@
         </c-card>
       </div>
     </c-col>
-    <c-col class="position-relative" md="4">
-      <button cButton class="me-1" color="primary" (click)="subir_imagenes()">
+    <c-col class="d-flex flex-column align-items-center" md="4">
+      <button cButton class="me-1 mb-5" color="primary" (click)="subir_imagenes()">
         Subir imagen
       </button>
     </c-col>
