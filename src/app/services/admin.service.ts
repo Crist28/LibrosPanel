@@ -96,13 +96,13 @@ export class AdminService {
     });
 
   }
-  // getBooks(id: any, token: any):Observable<any>{
-  //   let headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization':token
-  //   });
-  //   return this.http.get(this.url + 'getBooks/'+id,{headers:headers});
-  // }
+  getBooks(id: any, token: any):Observable<any>{
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization':token
+    });
+    return this.http.get(this.urlbook + 'api/books/'+id,{headers:headers});
+  }
   cargarLibros(tipo: string, filtro: string, token: any): Observable<any> {
     let headers = new HttpHeaders({
       authorization: token,
@@ -126,4 +126,13 @@ export class AdminService {
       headers: headers,
     });
   }
+  //galeria imagenes
+  agregarImagenesGaleria(id: any, files: File[], token: string): Observable<any> {  
+    const headers = new HttpHeaders({ Authorization: token });
+    const formData = new FormData();
+    files.forEach((file) => formData.append('imagenes', file));
+  
+    return this.http.post(`${this.urlbook}/libreria/agregar-imagen/${id}`, formData, { headers });
+  }
+  
 }

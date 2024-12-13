@@ -46,7 +46,6 @@ export const navItems: INavData[] = [
         url: 'createbook',
         icon: 'nav-icon-bullet'
       }
-     
     ]
   },
   {

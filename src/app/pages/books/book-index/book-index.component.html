@@ -58,7 +58,7 @@
           <th scope="row">{{ (page - 1) * pageSize + indice + 1 }}</th>
           <td>
             <img
-              [src]="url + 'api/books/' + libro.portada"
+              [src]="url + 'portada/' + libro.portada"
               style="width: 50px"
               alt=""
             />
@@ -71,12 +71,12 @@
           <td>{{ libro.categoria }}</td>
           <td>{{ libro.nventas }}</td>
           <td>
-            <a [routerLink]="['/galeria', libro._id]" style="cursor: pointer">
+            <a [routerLink]="['/galeria', libro._id]" class="d-flex flex-column align-items-center" style="cursor: pointer">
               <img
-                width="25"
-                height="25"
-                src="https://img.icons8.com/ios/50/stack-of-photos--v1.png"
-                alt="stack-of-photos--v1"
+                width="50"
+                height="50"
+                src="https://img.icons8.com/bubbles/100/stack-of-photos.png"
+                alt="stack-of-photos"
               />
             </a>
           </td>
@@ -84,34 +84,35 @@
             <a
               [routerLink]="['/actualizarbook', libro._id]"
               style="cursor: pointer"
+              class="d-flex flex-column align-items-center"
             >
               <img
-                width="35"
+                width="45"
                 src="https://img.icons8.com/bubbles/50/edit.png"
                 alt="edit"
               />
             </a>
           </td>
           <td>
-            <a (click)="eliminarProducto(libro._id)" style="cursor: pointer">
+            <a class="d-flex flex-column align-items-center" (click)="eliminarProducto(libro._id)" style="cursor: pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
-                width="30"
+                width="35"
                 viewBox="0 0 48 48"
               >
                 <path
-                  fill="#9fa8da"
+                  fill="#f28b82"
                   d="M12,13v25c0,2.2,1.8,4,4,4h16c2.2,0,4-1.8,4-4V13H12z"
                 ></path>
                 <path
-                  fill="#7986cb"
+                  fill="#e57373"
                   d="M23,15h2v23h-2V15z M29,15h2v23h-2V15z M17,15h2v23h-2V15z"
                 ></path>
-                <path fill="#5c6bc0" d="M12,10h24v4H12V10z"></path>
+                <path fill="#ef5350" d="M12,10h24v4H12V10z"></path>
                 <path
-                  fill="#5c6bc0"
+                  fill="#d32f2f"
                   d="M10,13h28v4H10V13z M20,12V8h8v4h2V8c0-1.1-0.9-2-2-2h-8c-1.1,0-2,0.9-2,2v4H20z"
                 ></path>
               </svg>

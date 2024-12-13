@@ -79,6 +79,16 @@ export const routes: Routes = [
         }
 
       },
+      {
+        path: 'galeria/:id',
+        loadComponent: () =>
+          import('./pages/books/galeria-imagenes/galeria-imagenes.component').then(m => m.GaleriaImagenesComponent ),
+        canActivate: [adminGuard],
+        data: {
+          title: 'Galeria de fotos'
+        }
+
+      },
     ]
   },
   {
