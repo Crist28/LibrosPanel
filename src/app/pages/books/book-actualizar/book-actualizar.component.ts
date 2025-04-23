@@ -87,6 +87,9 @@ export class BookActualizarComponent {
       stock: new FormControl(''),
       descripcion: new FormControl(''),
       categoria: new FormControl(''),
+      anio_publicacion: new FormControl(''),
+      autor: new FormControl(''),
+      isbn: new FormControl(''),
     });
   }
 
