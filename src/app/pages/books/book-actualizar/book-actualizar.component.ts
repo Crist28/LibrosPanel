@@ -6,7 +6,6 @@ import {
   FormGroup,
   FormControl,
 } from '@angular/forms';
-import { DocsExampleComponent } from '@docs-components/public-api';
 import {
   RowComponent,
   ColComponent,
@@ -30,8 +29,9 @@ import {
 } from '@coreui/angular';
 import { DefaultLayoutComponent } from '../../../components/default-layout/default-layout.component';
 import { AdminService } from '../../../services/admin.service';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscriber } from 'rxjs';
+import { BookService } from '../../../services/book.service';
 declare let iziToast: any;
 @Component({
   selector: 'app-crear-libro',
@@ -43,8 +43,7 @@ declare let iziToast: any;
     TextColorDirective,
     CardComponent,
     CardHeaderComponent,
-    CardBodyComponent,
-    DocsExampleComponent,
+    CardBodyComponent,    
     ReactiveFormsModule,
     FormsModule,
     FormDirective,
@@ -68,12 +67,16 @@ declare let iziToast: any;
 export class BookActualizarComponent {
   public registerForm: FormGroup;
   public token: string;
+  public id: any;
+  public book: any;
   public file: any = undefined;
   public imgSelect: any | ArrayBuffer = 'assets/carpeta.jpg';
 
   constructor(
     private adminService: AdminService,
+    private bookService: BookService,
     private router: Router,
+    private route: ActivatedRoute
   ) {
     const token = this.adminService.getToken();
     this.token = token !== null ? token : '';
@@ -91,6 +94,21 @@ export class BookActualizarComponent {
       autor: new FormControl(''),
       isbn: new FormControl(''),
     });
+  }
+
+  ngOnInit():void{
+    this.obtenerLibro()
+  }
+
+  obtenerLibro(){
+    this.route.params.subscribe(params =>{
+      this.id = params['id']
+      this.bookService.obtener_libro(this.id, this.token).subscribe(
+        respuesta =>{
+          this.book = respuesta.data
+        } 
+      )
+    })
   }
 
   onFileChange(event: any) {

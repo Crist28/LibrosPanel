@@ -11,6 +11,7 @@
       cFormControl
       formControlName="titulo"
       id="validationTooltip01"
+      [(ngModel)]="book.titulo"
       required
       type="text"
       name="titulo"
@@ -24,6 +25,7 @@
       cFormControl
       formControlName="autor"
       id="validationTooltip01"
+      [(ngModel)]="book.autor"
       required
       type="text"
       name="autor"
@@ -37,6 +39,7 @@
       cFormControl
       formControlName="anio_publicacion"
       id="validationTooltip01"
+      [(ngModel)]="book.anio_publicacion"
       required
       type="number"
       name="anio_publicacion"
@@ -50,6 +53,7 @@
       cFormControl
       formControlName="isbn"
       id="validationTooltip01"
+      [(ngModel)]="book.isbn"
       required
       type="text"
       name="isbn"
@@ -63,6 +67,7 @@
       cFormControl
       formControlName="categoria"
       id="validationTooltip05"
+      [(ngModel)]="book.categoria"
       required
       type="text"
       name="categoria"
@@ -80,6 +85,7 @@
         cFormControl
         formControlName="precio"
         id="validationTooltipUsername"
+        [(ngModel)]="book.precio"
         required
         type="number"
         name="precio"
@@ -95,6 +101,7 @@
       cFormControl
       formControlName="stock"
       id="validationTooltip03"
+      [(ngModel)]="book.stock"
       required
       type="text"
       type="number"
@@ -111,6 +118,7 @@
       <textarea
         cFormControl
         id="exampleFormControlTextarea1"
+        [(ngModel)]="book.contenido"
         rows="3"
         cFormControl
         formControlName="contenido"
@@ -131,6 +139,7 @@
       cFormControl
       formControlName="descripcion"
       id="validationTooltipUsername"
+      [(ngModel)]="book.descripcion"
       required
       type="text"
       rows="3"
