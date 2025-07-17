@@ -2,19 +2,18 @@
   #tooltipForm="ngForm"
   cForm
   class="row g-3 needs-validation"
-  [formGroup]="registerForm"
-  (ngSubmit)="onSubmit()"
+  #actualizarFormulario="ngForm"
+  (ngSubmit)="actualizarlibro(actualizarFormulario)"
 >
   <c-col class="position-relative" md="4">
     <label cLabel for="validationTooltip01">Titulo</label>
     <input
-      cFormControl
-      formControlName="titulo"
-      id="validationTooltip01"
-      [(ngModel)]="book.titulo"
-      required
-      type="text"
+      cFormControl      
       name="titulo"
+      [(ngModel)]="producto.titulo"       
+      id="validationTooltip01"      
+      required
+      type="text"      
     />
     <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
   </c-col>
@@ -23,12 +22,11 @@
     <label cLabel for="validationTooltip01">Autor</label>
     <input
       cFormControl
-      formControlName="autor"
-      id="validationTooltip01"
-      [(ngModel)]="book.autor"
-      required
-      type="text"
       name="autor"
+      [(ngModel)]="producto.autor"
+      id="validationTooltip01"      
+      required
+      type="text"      
     />
     <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
   </c-col>
@@ -37,12 +35,11 @@
     <label cLabel for="validationTooltip01">Año de publicación</label>
     <input
       cFormControl
-      formControlName="anio_publicacion"
-      id="validationTooltip01"
-      [(ngModel)]="book.anio_publicacion"
-      required
-      type="number"
       name="anio_publicacion"
+      [(ngModel)]="producto.anio_publicacion"
+      id="validationTooltip01"      
+      required
+      type="number"      
     />
     <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
   </c-col>
@@ -51,12 +48,11 @@
     <label cLabel for="validationTooltip01">Número Estándar Internacional de Libros</label>
     <input
       cFormControl
-      formControlName="isbn"
-      id="validationTooltip01"
-      [(ngModel)]="book.isbn"
-      required
-      type="text"
       name="isbn"
+      [(ngModel)]="producto.isbn"
+      id="validationTooltip01"      
+      required
+      type="text"      
     />
     <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
   </c-col>
@@ -65,12 +61,11 @@
     <label cLabel for="validationTooltip05">categoria</label>
     <input
       cFormControl
-      formControlName="categoria"
-      id="validationTooltip05"
-      [(ngModel)]="book.categoria"
-      required
-      type="text"
       name="categoria"
+      [(ngModel)]="producto.categoria"
+      id="validationTooltip05"      
+      required
+      type="text"      
     />
     <c-form-feedback [valid]="false" tooltip
       >Please provide a valid zip.</c-form-feedback
@@ -81,14 +76,12 @@
     <label cLabel for="validationTooltipUsername">Precio</label>
     <c-input-group class="has-validation">
       <input
-        aria-describedby="inputGroupPrependTooltip"
         cFormControl
-        formControlName="precio"
-        id="validationTooltipUsername"
-        [(ngModel)]="book.precio"
-        required
-        type="number"
         name="precio"
+        [(ngModel)]="producto.precio"
+        id="validationTooltipUsername"        
+        required
+        type="number"        
       />
       <c-form-feedback [valid]="false" tooltip
         >Please choose a Precio.</c-form-feedback
@@ -99,13 +92,12 @@
     <label cLabel for="validationTooltip03">Stock</label>
     <input
       cFormControl
-      formControlName="stock"
-      id="validationTooltip03"
-      [(ngModel)]="book.stock"
+      name="stock"
+      [(ngModel)]="producto.stock"
+      id="validationTooltip03"      
       required
       type="text"
-      type="number"
-      name="stock"
+      type="number"      
     />
     <c-form-feedback [valid]="false" tooltip
       >Please provide a valid Stock.</c-form-feedback
@@ -117,15 +109,12 @@
     <div class="mb-3">
       <textarea
         cFormControl
-        id="exampleFormControlTextarea1"
-        [(ngModel)]="book.contenido"
-        rows="3"
-        cFormControl
-        formControlName="contenido"
+        name="contenido"
+        [(ngModel)]="producto.contenido"        
+        rows="3"        
         id="validationTooltip01"
         required
-        textarea
-        name="contenido"
+        textarea        
       ></textarea>
     </div>
     <c-form-feedback [valid]="true" tooltip>Looks good!</c-form-feedback>
@@ -135,15 +124,14 @@
     <label cLabel for="validationTooltipUsername">Descripcion</label>
     <div class="mb-3">
       <textarea
-      aria-describedby="inputGroupPrependTooltip"
       cFormControl
-      formControlName="descripcion"
-      id="validationTooltipUsername"
-      [(ngModel)]="book.descripcion"
+      name="descripcion"
+      [(ngModel)]="producto.descripcion"
+      id="validationTooltipUsername"      
       required
       type="text"
       rows="3"
-      name="descripcion"
+      
       ></textarea>
     </div>
     <c-input-group class="has-validation">
@@ -159,10 +147,10 @@
       </c-card>
       <label cLabel for="formFile">Seleccionar Portada</label>
       <input
-        aria-label="file example"
-        (change)="onFileChange($event)"
         cFormControl
-        formControlName="portada"
+        aria-label="file example"
+        (change)="onFileChange($event)"        
+        
         id="validationText1"
         required
         type="file"

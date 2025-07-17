@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -43,7 +44,7 @@ declare let iziToast: any;
     TextColorDirective,
     CardComponent,
     CardHeaderComponent,
-    CardBodyComponent,    
+    CardBodyComponent,
     ReactiveFormsModule,
     FormsModule,
     FormDirective,
@@ -60,17 +61,18 @@ declare let iziToast: any;
     ListGroupDirective,
     ListGroupItemDirective,
     RouterLink,
+    CommonModule,
   ],
   templateUrl: './book-actualizar.component.html',
   styleUrl: './book-actualizar.component.scss',
 })
-export class BookActualizarComponent {
-  public registerForm: FormGroup;
+export class BookActualizarComponent {  
   public token: string;
   public id: any;
-  public book: any;
+  public book: any = {};
   public file: any = undefined;
   public imgSelect: any | ArrayBuffer = 'assets/carpeta.jpg';
+  public producto: any = {categoria:''}
 
   constructor(
     private adminService: AdminService,
@@ -82,33 +84,51 @@ export class BookActualizarComponent {
     this.token = token !== null ? token : '';
     const file = this.adminService;
 
-    this.registerForm = new FormGroup({
-      titulo: new FormControl(''),
-      portada: new FormControl(''),
-      contenido: new FormControl(''),
-      precio: new FormControl(''),
-      stock: new FormControl(''),
-      descripcion: new FormControl(''),
-      categoria: new FormControl(''),
-      anio_publicacion: new FormControl(''),
-      autor: new FormControl(''),
-      isbn: new FormControl(''),
-    });
+
   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.obtenerLibro()
   }
 
-  obtenerLibro(){
-    this.route.params.subscribe(params =>{
+  obtenerLibro() {
+    this.route.params.subscribe(params => {
       this.id = params['id']
       this.bookService.obtener_libro(this.id, this.token).subscribe(
-        respuesta =>{
-          this.book = respuesta.data
-        } 
+        respuesta => {
+          if(respuesta.data == undefined){
+            this.producto = undefined
+          }else{
+            this.producto = respuesta.data
+          }
+        }
       )
     })
+  }
+
+  actualizarlibro(actualizarFormulario: NgForm) {
+    if (actualizarFormulario.valid) {
+      const productoActualizado = {
+        _id: this.producto._id,
+        titulo: this.producto.titulo,
+        portada: this.producto.portada,
+        contenido: this.producto.contenido,
+        precio: this.producto.precio,
+        stock: this.producto.stock,
+        descripcion: this.producto.descripcion,
+        categoria: this.producto.categoria,
+        anio_publicacion: this.producto.anio_publicacion,
+        autor: this.producto.autor,
+        isbn: this.producto.isbn,
+      }
+      this.bookService.actualiza_libro(this.producto._id, productoActualizado, this.token).subscribe(
+        respuesta =>{
+          console.log('Libro Actualizado')
+        },err => {
+          console.log('Error en la actualización')
+        }
+      )
+    }
   }
 
   onFileChange(event: any) {
@@ -156,22 +176,22 @@ export class BookActualizarComponent {
     console.log(this.file);
   }
 
-  onSubmit() {
-    if (this.registerForm.valid) {
-      const formData = this.registerForm.value;
-      console.log(formData);
-      this.adminService.CreateBook(formData, this.file, this.token).subscribe(
-        (response) => {
-          console.log(response);
-          this.router.navigate(['']);
-        },
-        (error) => {
-          console.log(error);
-          // this.error = error.error.message;
-        },
-      );
-    }
-  }
+  // onSubmit() {
+  //   if (this.registerForm.valid) {
+  //     const formData = this.registerForm.value;
+  //     console.log(formData);
+  //     this.adminService.CreateBook(formData, this.file, this.token).subscribe(
+  //       (response) => {
+  //         console.log(response);
+  //         this.router.navigate(['']);
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //         // this.error = error.error.message;
+  //       },
+  //     );
+  //   }
+  // }
 
   tooltipValidated = false;
 
